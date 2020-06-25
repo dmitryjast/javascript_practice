@@ -1,0 +1,5 @@
+Hangman game
+
+General description:
+
+Player try to guess what it is one letter of a gidden word. The game draws a number of dashes equivalent to the number of letters in the word. If a guessing player suggests a letter that occurs in the word, the game fills in the blanks with that letter in the right places. Player has 3 lives only.

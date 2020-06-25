@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Test page</title>
+</head>
+<body>
+<h1>Hangman game</h1>
+<p>Player try to guess what it is one letter of a gidden word. The game draws a number of dashes equivalent to the number of letters in the word. If a guessing player suggests a letter that occurs in the word, the game fills in the blanks with that letter in the right places. Remember that you have 3 lives only. Good luck!</p>
+    <script>
+
+        const words = [
+            "program",
+            "monkey",
+            "wonderful",
+            "pancake",
+            "dinner",
+            "computer",
+            "carwasher"
+        ];
+
+        const word = words[Math.floor(Math.random()*words.length)];
+
+        let answerArray = [];
+        for (let i = 0; i < word.length; i++){
+            answerArray[i] = "_";
+        }
+
+        let remainigLetters = word.length;
+
+        let newRemainigLetters = remainigLetters;
+
+        let lives = 3;
+
+        while ((remainigLetters > 0) && (lives !== 0)){
+
+            alert("Lives: " + lives + "\n" + answerArray.join(" ") + "\n" + remainigLetters + " letters to go");
+
+            let guess = prompt("Please guess the word, or if you want to end the game, please click Cancel");
+
+            if (guess === null){
+                break;
+            } else if (guess.length !== 1) {
+                alert("Please enter just ONE letter.")
+            } else {
+                guess = guess.toLowerCase();
+                for (let j = 0; j < word.length; j++) {
+
+                    if (answerArray[j] === guess) {
+                        alert("Sorry, this letter is already there ... try again.")
+                        break;
+                    }
+                    if(word[j] === guess){
+                        answerArray[j] = guess;
+                        remainigLetters--;
+                    }
+                }
+            }
+
+            if (remainigLetters === newRemainigLetters) {
+                lives--;
+            }
+
+            newRemainigLetters = remainigLetters;
+        }
+
+        if (lives === 0) {
+            alert("Oooo, no! Your lives are over... The hiden word was: " + word);
+        } else if(remainigLetters === 0){
+            alert("Nice! The hiden word was " + word);
+        } else {
+            alert("Hmm, OK, bye..");
+        }
+    </script>
+</body>
+</html>
